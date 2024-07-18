@@ -1,1 +1,634 @@
-<h1> Hola MUNDO </h1>
+<!DOCTYPE html>
+<html lang="esp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Viexport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "poppins", sans-serif;
+        }
+
+        body {
+            color: #ededed;
+            background: #081b29;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 10%;
+            background: #010c22;
+            display: flex;
+            justify-content: space-between;
+            z-index: 100;
+        }
+
+        .logo {
+            position: relative;
+            font-size: 25px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            cursor: default;
+            opacity: 0;
+            animation: slideRight 1s ease forwards;
+        }
+
+        .navbar a {
+            display: inline-block;
+            font-size: 25px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 35px;
+            transition: .3s;
+            opacity: 0;
+            animation: slideTop .5s ease forwards;
+        }
+
+        .navbar a:hover {
+            color: #0ef;
+        }
+
+        .home {
+            position: relative;
+            width: 100%;
+            justify-content: space-between;
+            height: 100vh;
+            background-color: black;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            padding: 70px 10% 0;
+
+        }
+
+        .home-content {
+            max-width: 600px;
+        }
+
+        .home-content h3 {
+            font-style: 32px;
+            font-weight: 700;
+            opacity: 0;
+            animation: slideBottom 1s ease forwards;
+            animation-delay: .7s;
+
+        }
+
+        .home-content h3:nth-of-type(2) {
+            margin-bottom: 30px;
+            animation: slideTop 1s ease;
+            animation-delay: .7s;
+        }
+
+        .home-content h3 span {
+            color: #0ef;
+        }
+
+        .home-content h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin: 3px 0;
+            opacity: 0;
+            animation: slideRight 1s ease forwards;
+            animation-delay: 1s;
+        }
+
+        .home-content p {
+            font-size: 20px;
+            opacity: 0;
+            animation: slideLeft 1s ease forwards;
+            animation-delay: 1s;
+
+        }
+
+        .home-sci a {
+            display: inline-flex;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 2px solid #0ef;
+            border-radius: 50%;
+            font-size: 20px;
+            color: #0ef;
+            text-decoration: none;
+            transition: .5s ease;
+            opacity: 0;
+            animation: slideLeft 1s ease forwards;
+            animation-delay: calc(.2s*var(--i));
+            margin: 30px 15px 30px 0;
+        }
+
+        .home-sci a:hover {
+            background: #0ef;
+            color: #081b29;
+            box-shadow: 0 0 2px #0ef;
+        }
+
+        .btn-box {
+            display: inline-block;
+            padding: 12px 28px;
+            background: #0ef;
+            border-radius: 40px;
+            font-size: 16px;
+            color: #000000;
+            letter-spacing: 1px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn-box:hover {
+            box-shadow: 0 0 5px cyan,
+                0 0 25px cyan, 0 0 50px cyan,
+                0 0 100px cyan, 0 0 200px cyan;
+        }
+
+        .about {
+            display: grid;
+            grid-template-columns: repeat(2, 1rf);
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .about-img img {
+            padding-bottom: 20px;
+            max-width: 630px;
+            height: auto;
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .about-text h2 {
+            font-size: 60px;
+            position: right;
+        }
+
+        .about-text h2 span {
+            color: #0ef;
+        }
+
+        .about-text h4 {
+            font-size: 29px;
+            font-weight: 600;
+            color: #fff;
+            line-height: 1.7;
+            margin: 15px 0 30 px;
+            position: inherit;
+        }
+
+        .about-text p {
+            color: #0ef;
+            font-size: 20px;
+            line-height: 1.4;
+            margin-bottom: 4rem;
+        }
+        .services {
+            text-align: center;
+            padding: 50px 0;
+            margin: 3%;
+        }
+        .services h2 {
+            font-size: 2.5em;
+            color: #00e0ff;
+            margin: 6%;
+        }
+        .service-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 3%;
+        }
+        .service-box {
+            background-color: #1a2336;
+            padding: 20px;
+            border-radius: 10px;
+            width: 250px;
+            box-shadow: 0 0 15px rgba(0, 224, 255, 0.5);
+            margin: 3%;
+        }
+        .service-box h3 {
+            color: #00e0ff;
+            font-size: 1.5em;
+        }
+        .service-box p {
+            font-size: 1em;
+            color: #ccc;
+        }
+        .service-box button {
+            background-color: #00e0ff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .service-box button:hover {
+            background-color: #00b5cc;
+        }
+
+
+        @keyframes slideRight {
+            0% {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0px);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideLeft {
+            0% {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0px);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideTop {
+            0% {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0px);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideBottom {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0px);
+                opacity: 1;
+            }
+        }
+
+        .profile-pic img {
+            border-radius: 50%;
+            width: 450px;
+            height: 450px;
+            border: 10px solid #66fcf1;
+        }
+
+        .skills-section {
+            text-align: center;
+            width: 80%;
+            
+        }
+
+        .skills-section h2 span {
+            color: #00bcd4;
+        }
+
+        .skills-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .technical-skills, .professional-skills {
+            width: 45%;
+        }
+
+        .technical-skills h3, .professional-skills h3 {
+            border-bottom: 2px solid #00bcd4;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .skill {
+            margin-bottom: 20px;
+        }
+
+        .skill label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .progress-bar {
+            background: #2d2d2d;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 5px;
+        }
+
+        .progress {
+            background: #00bcd4;
+            height: 100%;
+            width: 0;
+            transition: width 2s;
+        }
+
+        .skill-circle-container {
+            display: flex;
+            justify-content: space-between;
+            justify-content: space-evenly 80%;
+        }
+
+        .skill-circle {
+            background: #2d2d2d;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            margin: 20px;
+        }
+
+        .skill-circle::after {
+            content: attr(data-percent) '%';
+            position: absolute;
+            font-size: 18px;
+            color: #00bcd4;
+            opacity: 0;
+            transition: opacity 2s;
+        }
+
+        .skill-circle:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: #0a192f;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .skill-circle div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #00bcd4;
+            clip: rect(0, 50px, 100px, 0);
+            transform: rotate(0deg);
+            transform-origin: 50% 50%;
+            transition: transform 2s;
+        }
+
+        .skill-label {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #00bcd4;
+        }
+        body { margin: 0; font-family: Arial, sans-serif; background-color: #4B306A; color: #fff; } .footer { background-color: #000000; padding: 40px 20px; text-align: center; } .footer h2 { color: #f7a72e; } .footer .contact-info { display: flex; justify-content: space-around; align-items: center; margin: 20px 0; } .footer .contact-info div { flex: 1; max-width: 200px; } .footer .contact-info div img { width: 40px; margin-bottom: 10px; } .footer .contact-info div p { margin: 5px 0; } .footer .social-icons { margin-top: 20px; } .footer .social-icons a { margin: 0 10px; text-decoration: none; color: #fff; font-size: 20px; } .footer p { margin-top: 20px; font-size: 14px; } .footer p a { color: #f7a72e; text-decoration: none; }
+    </style>
+    <link rel="stylesheet" href="stylesheet.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://unpkg.com/typed.js@2.0.15/dist/typed.umd.js"></script>
+</head>
+
+<body>
+    <header class="header">
+        <a href="#" class="logo">Ꮳǟ𝔯𝐛สɭɭ𝗼</a>
+
+        <nav class="navbar">
+            <a href="#" style="--i:1" class="active">Inicio</a>
+            <a href="#" style="--i:2">Sobre mi</a>
+            <a href="#" style="--i:3">Servicios</a>
+            <a href="#" style="--i:4">Habilidades</a>
+            <a href="#" style="--i:5">Contacto</a>
+        </nav>
+    </header>
+    <section class="home">
+        <div class="home-content">
+            <h3>Hola, Yo soy<span class="text"></span> </h3>
+            <h1>Cristian Julian Carballo</h1>
+            <h3>Yo soy</h3>
+            <p> Estudiante de sistemas informaticos </p>
+            <br>¡Hola! Soy Julián, un estudiante de 19 años apasionado por los sistemas informáticos y todo lo relacionado con la tecnología. Desde que era joven, siempre me he sentido atraído por la forma en que la informática puede transformar el mundo que nos rodea<br>
+            <div class="home-sci">
+                <a href="https://www.facebook.com/?locale=es_LA" style="--i:7"><i class='bx bxl-facebook'></i></a>
+                <a href="https://www.instagram.com/" style="--i:8"><i class='bx bxl-instagram'></i></a>
+                <a href="https://web.whatsapp.com/" style="--i:9"><i class='bx bxl-whatsapp'></i></a>
+                <a href="https://github.com/" style="--i:10"><i class='bx bxl-github'></i></a>
+            </div>
+            <a href="#" class="btn-box">Mas Sobre Mi</a>
+        </div>
+        <div class="profile-pic">
+            <img src="file:///C:/Users/Administrador/Downloads/e293d00d-94f6-4d1d-bfc8-dabe61bab52f%20(1).jfif" alt="Profile Picture">
+        </div>
+        </div>
+        <span class="home-imgHover"></span>
+    </section>
+
+
+    <section class="About" id="sobre mi">
+        <div class="About-img">
+        </div>
+        <div class="about-text"> 
+            <h2>Sobre<span>Mi</span></h2>
+            <h4> Mi enfoque tecnologico</h4>
+            <p>Mi enfoque en los sistemas informáticos va más allá de simplemente estudiar códigos y algoritmos. Me encanta enfrentarme a desafíos y encontrar soluciones rápidas y eficientes para problemas complejos. Cada línea de código es una oportunidad para aprender algo nuevo y mejorar mis habilidades.
+                Lo que más me gusta de trabajar en el campo de la informática es la posibilidad de colaborar con otros. Creo firmemente en el poder del trabajo en equipo y disfruto compartiendo ideas y conocimientos con mis compañeros.</p>
+                <p> Juntos, podemos lograr cosas asombrosas y superar cualquier obstáculo que se presente en nuestro camino.
+                
+                Además de mi pasión por la tecnología, también me considero una persona honesta y confiable. Creo en la importancia de la integridad en todo lo que hago y siempre me esfuerzo por actuar con ética y transparencia en todas mis interacciones.
+                
+                En resumen, soy un estudiante de sistemas informáticos con una mente inquisitiva, una pasión por la colaboración y un compromiso con la integridad. Estoy emocionado por lo que el futuro me depara en este apasionante campo y estoy listo para enfrentar cualquier desafío que se presente en el camino.
+                </p>
+
+            <a href="#" class="btn-box">Mas Sobre Mi</a>
+        </div>
+    </section>
+    
+
+
+
+  <section>
+    <div class="services" id="services">
+        <h2>Mis Servicios</h2>
+        <div class="service-container">
+            <div class="service-box" onmouseover="animateBox(this)" onmouseout="resetBox(this)">
+                <h3>Mantenimiento y Soporte Tecnico</h3>
+              
+            </div>
+            <div class="service-box" onmouseover="animateBox(this)" onmouseout="resetBox(this)">
+                <h3>Diseño Grafico</h3>
+            
+            </div>
+            <div class="service-box" onmouseover="animateBox(this)" onmouseout="resetBox(this)">
+                <h3>Desarrollo Front Basic</h3>
+             
+            </div>
+            <div class="service-box" onmouseover="animateBox(this)" onmouseout="resetBox(this)">
+                <h3>Creacion de Sistemas de Red</h3>
+               
+         
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="services" id="services">
+        <h2>Mis Habilidades</h2>
+        <div class="service-container">
+
+            <div class="skills-section">
+               <div class="skills-container">
+                   <div class="technical-skills">
+                       <h3>Habilidades Tecnicas</h3>
+                       <div class="skill">
+                           <label>Word</label>
+                           <div class="progress-bar">
+                               <div class="progress" style="width: 90%;"></div>
+                           </div>
+                       </div>
+                       <div class="skill">
+                           <label>Excel</label>
+                           <div class="progress-bar">
+                               <div class="progress" style="width: 60%;"></div>
+                           </div>
+                       </div>
+                       <div class="skill">
+                           <label>Power Poin</label>
+                           <div class="progress-bar">
+                               <div class="progress" style="width: 85%;"></div>
+                           </div>
+                       </div>
+                       <div class="skill">
+                           <label>Visual Studio Code </label>
+                           <div class="progress-bar">
+                               <div class="progress" style="width: 50%;"></div>
+                           </div>
+                       </div>
+                       <div class="skill">
+                           <label>IAs</label>
+                           <div class="progress-bar">
+                               <div class="progress" style="width: 75%;"></div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="professional-skills">
+                       <h3>Habilidades Personales</h3>
+                       <div class="skill-circle-container">
+                           <div class="skill">
+                               <div class="skill-circle" data-percent="60"><div></div></div>
+                               <div class="skill-label">Creatividad</div>
+                           </div>
+                           <div class="skill">
+                               <div class="skill-circle" data-percent="85"><div></div></div>
+                               <div class="skill-label">Communicacion</div>
+                           </div>
+                           <div class="skill">
+                               <div class="skill-circle" data-percent="85"><div></div></div>
+                               <div class="skill-label">Resolucion de Problemas </div>
+                           </div>
+                           <div class="skill">
+                               <div class="skill-circle" data-percent="85"><div></div></div>
+                               <div class="skill-label">Trabajo en Equipo</div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+
+
+
+
+</section>
+
+
+    <script>
+
+         document.addEventListener('DOMContentLoaded', () => {
+            const progressBars = document.querySelectorAll('.progress');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 100);
+            });
+
+            const skillCircles = document.querySelectorAll('.skill-circle');
+            skillCircles.forEach(circle => {
+                const percent = circle.getAttribute('data-percent');
+                const rotateDegree = percent * 3.6;
+                const progressDiv = circle.querySelector('div');
+                progressDiv.style.transform = rotate(0deg);
+                setTimeout(() => {
+                    progressDiv.style.transform = rotate(${rotateDegree}deg);
+                    circle.querySelector('::after').style.opacity = '1';
+                }, 100);
+            });
+        });
+
+
+
+
+
+
+
+
+
+        var typed = new typed(".text", {
+            Strings: ["frontend Developer", "Youtuber", "Web Developer"],
+            typeSpeed: 100,
+            backSpeed: 100,
+            backDelay: 1000,
+            loop: true
+        }) 
+        function animateBox(element) {
+            element.style.transform = 'translateY(-10px)';
+        }
+
+        function resetBox(element) {
+            element.style.transform = 'translateY(0)';
+        }
+    </script>
+</body>
+<footer class="footer">
+    <h2>Contactos <span style="color: #f7a72e;"></span></h2>
+    <div class="contact-info">
+        <div>
+            <img src="https://i.pinimg.com/474x/32/5a/4b/325a4bd7b5041b4455e9a0b64c92190d.jpg" alt="Email Icon">
+            <p>juliancarballo175gmail.com</p>
+        </div>
+        <div>
+            <img src="https://static.vecteezy.com/system/resources/previews/021/515/164/original/google-map-symbol-logo-white-design-illustration-with-black-background-free-vector.jpg" alt="Location Icon">
+            <p>Guadalupe - San Vicente</p>
+        </div>
+        <div>
+            <img src="https://cdn-icons-png.freepik.com/256/3616/3616230.png" alt="Phone Icon">
+            <p>(503) 7815-4913</p>
+        </div>
+    </div>
+    
+    <p>&copy; 2024 Todos los derechos reservados para Cristian Julian Carballo</p>
+
+
+</footer>
+
+</html>
